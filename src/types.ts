@@ -6,6 +6,6 @@ export type Game = {
   rating: number;
   coverUrl: string;
   notes: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
