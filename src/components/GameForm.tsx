@@ -9,7 +9,7 @@ type GameFormProps = {
 const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
   const [title, setTitle] = useState(initialValues?.title || '');
   const [platform, setPlatform] = useState(initialValues?.platform || '');
-  const [status, setStatus] = useState<Status>(initialValues?.status || 'want-to-play');
+  const [status, setStatus] = useState<Status>(initialValues?.status || 'want');
   const [rating, setRating] = useState<number>(initialValues?.rating || 0);
   const [coverUrl, setCoverUrl] = useState(initialValues?.coverUrl || '');
   const [notes, setNotes] = useState(initialValues?.notes || '');
