@@ -1,4 +1,4 @@
-export type Status = 'want to play' | 'playing' | 'completed' | 'dropped';
+export type Status = 'want-to-play' | 'playing' | 'completed' | 'dropped';
 
 export type Game = {
   id: string;
