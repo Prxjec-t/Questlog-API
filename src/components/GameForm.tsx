@@ -17,7 +17,7 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const success = await onSubmit({ title, platform, status, coverUrl, notes });
+    const success = await onSubmit({ title, platform, status, rating, coverUrl, notes });
 
     if (success) {
       setTitle('');
@@ -44,7 +44,7 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
       <label>
         Status
         <select value={status} onChange={(e) => setStatus(e.target.value as Status)}>
-          <option value="want-to-play">Want to play</option>
+          <option value="want">Want to play</option>
           <option value="playing">Playing</option>
           <option value="completed">Completed</option>
           <option value="dropped">Dropped</option>
@@ -73,7 +73,7 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
         <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} />
       </label>
 
-      <button>Add game</button>
+      <button> {initialValues ? 'Update game details' : 'Add game'} </button>
     </form>
   );
 };
