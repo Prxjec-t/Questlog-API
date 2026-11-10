@@ -17,7 +17,14 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const success = await onSubmit({ title, platform, status, rating, coverUrl, notes });
+    const success = await onSubmit({
+      title,
+      platform,
+      status,
+      rating: rating > 0 ? rating : undefined,
+      coverUrl,
+      notes,
+    });
 
     if (success) {
       setTitle('');

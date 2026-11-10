@@ -15,7 +15,7 @@ const GameItem = ({ game }: GameItemProps) => {
       <p>
         <span>{capitalize(game.platform)} </span>
         <span className="text-green-500">{game.status} </span>
-        <span>{game.rating}/5</span>
+        <span>{game.rating && game.rating > 0 ? `${game.rating}/5` : 'Not rated yet'}</span>
         {/* <span>Created At: {formatDate(game.createdAt)} </span>
         <span>Updated At: {formatDate(game.updatedAt)} </span> */}
       </p>
