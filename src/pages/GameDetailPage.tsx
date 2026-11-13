@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import type { Game } from '../types';
+import { capitalize, formatDate } from '../utils/format';
 
 const GameDetailPage = () => {
   const { id } = useParams();
@@ -58,7 +59,7 @@ const GameDetailPage = () => {
   if (isLoading) {
     return (
       <section>
-        <p>Loading game details...</p>
+        <p className="loading">Loading game details...</p>
       </section>
     );
   }
@@ -66,7 +67,7 @@ const GameDetailPage = () => {
   if (error) {
     return (
       <section>
-        <h1>{error || '404 - Page not found'} </h1>
+        <h1 className="error">{error || '404 - Page not found'} </h1>
         <Link to="/">Back to all games</Link>
       </section>
     );
@@ -76,27 +77,40 @@ const GameDetailPage = () => {
     return (
       <section>
         <Link to={'/games'}>Back to all games</Link>
-        <p>Game not found</p>;
+        <p className="error">Game not found</p>;
       </section>
     );
   }
 
   return (
-    <article>
-      <h1>{game.title}</h1>
-      <div>
-        <img src={game.coverUrl} alt={game.title} />
+    <article className="bg-red-800 text-white min-h-screen text-xl p-8 text-center">
+      <h1 className="font-bold text-3xl mb-5">{game.title}</h1>
+      <div className="flex items-center justify-center">
+        <img src={game.coverUrl} alt={game.title} className={game.coverUrl ? `w-60 h-80 mb-3` : ''} />
       </div>
 
-      <p>Platform: {game.platform}</p>
-      <p>Status: {game.status}</p>
-      <p>Rating: {game.rating ?? 'No rating'}</p>
-      <p>Notes: {game.notes}</p>
+      <div className="mb-3">
+        <p>Platform: {game.platform}</p>
+        <p>Status: {capitalize(game.status)}</p>
+        <p>Rating: {game.rating ?? 'No rating'}</p>
+        <p className={game.notes ? `block` : 'hidden'}>Notes: {game.notes}</p>
+      </div>
 
-      <section>
-        <Link to={`/games/${game.id}/edit`}>Edit</Link>
-        <button onClick={() => navigate(-1)}>Back</button>
-        <button onClick={deleteGame}>Delete</button>
+      <div className="mb-3">
+        <p className="pb-2">Created At: {formatDate(game.createdAt)}</p>
+        <p>Updated At: {formatDate(game.updatedAt)}</p>
+      </div>
+
+      <section className="grid place-items-center gap-3 pt-4">
+        <Link className="action-btns" to={`/games/${game.id}/edit`}>
+          Edit
+        </Link>
+        <button className="action-btns" onClick={() => navigate(-1)}>
+          Back
+        </button>
+        <button className="action-btns" onClick={deleteGame}>
+          Delete
+        </button>
       </section>
     </article>
   );
