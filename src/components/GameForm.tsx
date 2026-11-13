@@ -39,17 +39,15 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Your game
+        Your game:
         <input value={title} onChange={(e) => setTitle(e.target.value)} required></input>
       </label>
-
       <label>
-        Platform
+        Platform:
         <input value={platform} onChange={(e) => setPlatform(e.target.value)} required />
       </label>
-
       <label>
-        Status
+        Status:
         <select value={status} onChange={(e) => setStatus(e.target.value as Status)}>
           <option value="want">Want to play</option>
           <option value="playing">Playing</option>
@@ -57,9 +55,8 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
           <option value="dropped">Dropped</option>
         </select>
       </label>
-
       <label>
-        Rating (Optional)
+        Rating (Optional):
         <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
           <option value={0}>Not rated yet</option>
           <option value={1}>1</option>
@@ -69,17 +66,15 @@ const GameForm = ({ initialValues, onSubmit }: GameFormProps) => {
           <option value={5}>5</option>
         </select>
       </label>
-
       <label>
-        Cover Image URL (Optional)
+        Cover Image URL (Optional):
         <input type="url" value={coverUrl} onChange={(e) => setCoverUrl(e.target.value)} />
       </label>
 
       <label>
-        Notes
+        Notes:
         <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} />
       </label>
-
       <button> {initialValues ? 'Update game details' : 'Add game'} </button>
     </form>
   );
