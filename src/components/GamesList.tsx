@@ -40,15 +40,23 @@ const GamesList = ({ status }: GameListProps) => {
   }, [status]);
 
   return (
-    <section>
-      {isLoading && <p>Loading games...</p>}
-      {error && <p>Could not load the games: {error}</p>}
+    <section className="bg-black/95 flex flex-col items-center justify-center">
+      {isLoading && <p className="loading">Loading games...</p>}
+      {error && <p className="error">Could not load the games: {error}</p>}
 
-      <ul>
-        {games.map((game) => (
-          <GameItem key={game.id} game={game} />
-        ))}
-      </ul>
+      {!isLoading && !error && games.length === 0 && (
+        <p className="text-white text-xl md:text-2xl">
+          {status === 'all' ? 'No games in your library yet' : `No games found with status "${status}".`}
+        </p>
+      )}
+
+      {!isLoading && (
+        <ul className="w-11/12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {games.map((game) => (
+            <GameItem key={game.id} game={game} />
+          ))}
+        </ul>
+      )}
     </section>
   );
 };
