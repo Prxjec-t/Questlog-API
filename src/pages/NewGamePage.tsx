@@ -31,10 +31,14 @@ const NewGamePage = () => {
   };
 
   return (
-    <section>
-      <h2>Add game to backlog!</h2>
+    <section className="bg-red-800 text-white pt-4">
+      <div className="flex-col text-center">
+        <h2 className="text-xl font-semibold mb-3">Add game to backlog!</h2>
 
-      <button onClick={() => navigate(-1)}>Cancel</button>
+        <button className="p-1 bg-black w-25 hover:bg-black/50" onClick={() => navigate(-1)}>
+          Cancel
+        </button>
+      </div>
 
       {error && <p>Could not add the games: {error}</p>}
       <GameForm onSubmit={addGame} />
