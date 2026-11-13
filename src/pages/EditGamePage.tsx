@@ -58,9 +58,9 @@ const EditGamePage = () => {
     }
   };
 
-  if (isLoading) return <p>Loading game...</p>;
+  if (isLoading) return <p className="loading">Loading game...</p>;
 
-  if (error) return <p>Could not update the game</p>;
+  if (error) return <p className="error">Could not update the game</p>;
 
   if (!game) {
     return (
@@ -72,9 +72,13 @@ const EditGamePage = () => {
   }
 
   return (
-    <section>
-      <h2> Edit game info: {game.title}</h2>
-      <button onClick={() => navigate(-1)}>Cancel</button>
+    <section className="bg-red-800 text-white py-4">
+      <div className="text-center">
+        <h2 className="text-xl mb-6"> Edit game info: {game.title}</h2>
+        <button className="action-btns" onClick={() => navigate(-1)}>
+          Cancel
+        </button>
+      </div>
 
       <GameForm onSubmit={editGame} initialValues={game} />
     </section>
