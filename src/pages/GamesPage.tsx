@@ -10,14 +10,14 @@ const GamesPage = () => {
 
   return (
     <section>
-      <div>
+      <div className="bg-red-900">
         {filters.map((filter) => {
           const isSelected = activeFilter === filter;
           return (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`border-2 m-2 ${isSelected ? 'bg-amber-400 border-amber-600 font-bold ' : 'bg-amber-200 border-amber-500 font-normal hover:bg-amber-300'} `}>
+              className={`border-2 m-2 p-1 ${isSelected ? 'bg-gray-600 border-gray-600 font-bold ' : 'text-white bg-black border-red-500 hover:bg-red-300 transition-colors duration-200'} `}>
               {filter === 'want' ? 'Want to Play' : capitalize(filter)}
             </button>
           );
